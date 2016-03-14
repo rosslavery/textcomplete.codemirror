@@ -8,3 +8,6 @@ This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 ## [Unreleased]
 
+### Added
+
+- Add `CodeMirror` editor class.

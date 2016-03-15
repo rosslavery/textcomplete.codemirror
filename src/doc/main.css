@@ -1,0 +1,57 @@
+@import "../../node_modules/getbase/dist/style.css";
+@import "../../node_modules/highlight.js/styles/solarized-dark.css";
+@import "../../node_modules/codemirror/lib/codemirror.css";
+
+:root {
+  --height: 18px;
+}
+
+.dropdown-menu {
+  background-color: white;
+  border: 1px solid #ddd;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  & li {
+    border-top: 1px solid #ddd;
+    padding: 2px 5px;
+    margin: 0;
+    clear: both;
+  }
+
+  & li:first-child {
+    border-top: none;
+  }
+
+  & li:hover,
+  & .active {
+    background-color: rgb(110, 183, 219);
+  }
+
+  & a {
+    height: var(--height);
+    text-decoration: none;
+    color: #555;
+  }
+
+  & a:hover {
+    cursor: pointer;
+  }
+
+  & img {
+    vertical-align: text-top;
+    height: var(--height);
+  }
+
+  & .lang-name {
+    float: right;
+  }
+
+  & .lang-ext {
+    float: left;
+  }
+
+  & code {
+    background-color: transparent;
+  }
+}

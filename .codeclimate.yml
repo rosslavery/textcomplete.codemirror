@@ -16,3 +16,4 @@ ratings:
 exclude_paths:
 - gulpfile.js
 - textcomplete.codemirror
+- src/doc/langs.js

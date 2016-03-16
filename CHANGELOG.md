@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 ## [Unreleased]
+
+## [0.1.1] - 2016-03-16
 ### Fixed
 - Make demo page possible to run on Firefox.
 - Enable to be required.
@@ -16,4 +18,5 @@ This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 - Add `CodeMirror` editor class.
 
-[Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/yuku-t/textcomplete/compare/v0.1.0...v0.1.1

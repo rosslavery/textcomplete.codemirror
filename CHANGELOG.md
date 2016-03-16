@@ -13,10 +13,10 @@ This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 - Make demo page possible to run on Firefox.
 - Enable to be required.
 
-## 0.1.0 - 2016-03-16
+## 0.1.0 - 2016-03-16 [YANKED]
 ### Added
 
 - Add `CodeMirror` editor class.
 
 [Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/yuku-t/textcomplete/compare/v0.1.0...v0.1.1
+[0.1.1]: https://github.com/yuku-t/textcomplete/compare/a6e2e16...v0.1.1

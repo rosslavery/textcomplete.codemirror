@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 ## [Unreleased]
+### Fixed
+- Make demo page possible to run on Firefox.
 
 ## 0.1.0 - 2016-03-16
 ### Added

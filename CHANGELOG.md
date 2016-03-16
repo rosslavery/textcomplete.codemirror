@@ -8,6 +8,9 @@ This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 ## [Unreleased]
 
+## 0.1.0 - 2016-03-16
 ### Added
 
 - Add `CodeMirror` editor class.
+
+[Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.1.0...HEAD

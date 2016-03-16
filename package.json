@@ -1,6 +1,6 @@
 {
   "name": "textcomplete.codemirror",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A textcomplete editor for CodeMirror",
   "main": "src/codemirror.js",
   "scripts": {

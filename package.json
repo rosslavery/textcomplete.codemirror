@@ -2,7 +2,7 @@
   "name": "textcomplete.codemirror",
   "version": "0.1.1",
   "description": "A textcomplete editor for CodeMirror",
-  "main": "src/textcomplete.codemirror.js",
+  "main": "lib/textcomplete.codemirror.js",
   "scripts": {
     "postpublish": "npm pack textcomplete.codemirror && gh-release -a textcomplete.codemirror-$(cat package.json|jq -r .version).tgz",
     "prepublish": "test \"$CI\" != \"true\" && npm test && gulp clean && gulp compile || echo skip prepublish",

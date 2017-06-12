@@ -1,7 +1,6 @@
 import CodeMirror from '../src/textcomplete.codemirror';
 
 import isNumber from 'lodash.isnumber';
-import {UP, DOWN} from 'textcomplete/lib/editor';
 
 const assert = require('power-assert');
 
@@ -40,10 +39,10 @@ describe('CodeMirror', function () {
     }
 
     [
-      [38, UP, false, 'up'],
-      [40, DOWN, false, 'down'],
-      [78, DOWN, true, 'ctrl-n'],
-      [80, UP, true, 'ctrl-p'],
+      [38, 'UP', false, 'up'],
+      [40, 'DOWN', false, 'down'],
+      [78, 'DOWN', true, 'ctrl-n'],
+      [80, 'UP', true, 'ctrl-p'],
     ].forEach(([keyCode, code, ctrlKey, name]) => {
       context(`and it is a ${name} key`, function () {
         beforeEach(function () {
@@ -142,9 +141,9 @@ describe('CodeMirror', function () {
     });
   });
 
-  describe('#finalize', function () {
+  describe('#destroy', function () {
     function subject() {
-      return editor.finalize();
+      return editor.destroy();
     }
 
     it('should return itself', function () {

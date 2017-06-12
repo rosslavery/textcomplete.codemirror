@@ -1,4 +1,4 @@
-import Editor, {ENTER, UP, DOWN, OTHER} from 'textcomplete/lib/editor';
+import Editor from 'textcomplete/lib/editor';
 import {calculateElementOffset} from 'textcomplete/lib/utils';
 
 /**
@@ -19,8 +19,8 @@ class Codemirror extends Editor {
   }
 
   /** @override */
-  finalize() {
-    super.finalize();
+  destroy() {
+    super.destroy();
     this.stopListening();
     this.cm = null;
     return this;
@@ -107,9 +107,9 @@ class Codemirror extends Editor {
     var code = this.getCode(e);
     var event;
     switch (code) {
-      case OTHER:
+      case 'OTHER':
         return;
-      case ENTER: {
+      case 'ENTER': {
         event = this.emitEnterEvent();
         break;
       }
@@ -140,7 +140,7 @@ class Codemirror extends Editor {
    */
   isMoveKeyEvent(e) {
     var code = this.getCode(e);
-    return code === DOWN || code === UP;
+    return code === 'DOWN' || code === 'UP';
   }
 
   /**

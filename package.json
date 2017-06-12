@@ -9,6 +9,7 @@
     "build:lib": "babel src -d lib -s && for js in src/*.js; do cp $js lib/${js##*/}.flow; done",
     "clean": "rm -fr dist lib",
     "test": "run-p test:*",
+    "test:e2e": "karma start --single-run",
     "test:lint": "eslint src/textcomplete.codemirror.js test/**/*.js",
     "test:typecheck": "flow"
   },
@@ -45,20 +46,29 @@
     "getbase": "^2.8.2",
     "gh-release": "^2.0.2",
     "highlight.js": "^9.2.0",
-    "isparta": "^4.0.0",
     "jsdoc": "^3.4.0",
-    "jsdom": "^8.0.2",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-webpack": "^2.0.3",
     "lodash.assignin": "^4.0.3",
     "lodash.isnumber": "^3.0.3",
+    "mocha": "^3.4.2",
     "npm-run-all": "^4.0.2",
-    "postcss-cssnext": "^2.4.0",
-    "postcss-import": "^8.0.2",
     "power-assert": "^1.3.1",
-    "sinon": "^1.17.3",
+    "sinon": "^2.3.4",
     "webpack": "^2.6.1",
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
     "textcomplete": "^0.12.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "flow"
+    ]
   }
 }

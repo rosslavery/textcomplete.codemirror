@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/yuku-t/textcomplete.codemirror#readme",
   "dependencies": {
-    "lodash.bindall": "^4.1.0",
     "textcomplete": "^0.8.0"
   },
   "devDependencies": {

@@ -1,10 +1,6 @@
 import Editor, {ENTER, UP, DOWN, OTHER} from 'textcomplete/lib/editor';
 import {calculateElementOffset} from 'textcomplete/lib/utils';
 
-import bindAll from 'lodash.bindall';
-
-const CALLBACK_METHODS = ['onKeydown', 'onKeyup'];
-
 /**
  * @extends Editor
  * @prop {CodeMirror} cm
@@ -17,7 +13,8 @@ class Codemirror extends Editor {
     super();
     this.cm = cm;
 
-    bindAll(this, CALLBACK_METHODS);
+    this.onKeydown = this.onKeydown.bind(this);
+    this.onKeyup = this.onKeyup.bind(this);
     this.startListening();
   }
 

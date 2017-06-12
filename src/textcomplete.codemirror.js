@@ -1,20 +1,27 @@
+// @flow
+
 import Editor from 'textcomplete/lib/editor';
 import {calculateElementOffset} from 'textcomplete/lib/utils';
+import SearchResult from 'textcomplete/lib/search_result';
+
+type CodeMirror = any;
 
 /**
  * @extends Editor
  * @prop {CodeMirror} cm
  */
-class Codemirror extends Editor {
+export default class extends Editor {
+  cm: CodeMirror;
+
   /**
    * @param {CodeMirror} cm
    */
-  constructor(cm) {
+  constructor(cm: CodeMirror) {
     super();
     this.cm = cm;
 
-    this.onKeydown = this.onKeydown.bind(this);
-    this.onKeyup = this.onKeyup.bind(this);
+    (this: any).onKeydown = this.onKeydown.bind(this);
+    (this: any).onKeyup = this.onKeyup.bind(this);
     this.startListening();
   }
 
@@ -30,11 +37,11 @@ class Codemirror extends Editor {
    * @override
    * @param {SearchResult} searchResult
    */
-  applySearchResult(searchResult) {
-    var replace = searchResult.replace(this.getBeforeCursor(), this.getAfterCursor());
+  applySearchResult(searchResult: SearchResult) {
+    const replace = searchResult.replace(this.getBeforeCursor(), this.getAfterCursor());
     if (Array.isArray(replace)) {
       this.cm.doc.setValue(replace[0] + replace[1]);
-      let lines = replace[0].split('\n');
+      const lines = replace[0].split('\n');
       this.cm.doc.setCursor(lines.length - 1, lines[lines.length - 1].length);
     }
     this.cm.focus();
@@ -45,8 +52,8 @@ class Codemirror extends Editor {
    * @returns {{top: number, left: number}}
    */
   getCursorOffset() {
-    var el = this.cm.display.cursorDiv.firstChild;
-    var offset = calculateElementOffset(el);
+    const el = this.cm.display.cursorDiv.firstChild;
+    const offset = calculateElementOffset(el);
     return { top: offset.top + parseInt(el.style.height, 10), left: offset.left };
   }
 
@@ -55,10 +62,10 @@ class Codemirror extends Editor {
    * @returns {string}
    */
   getBeforeCursor() {
-    var {line, ch} = this.getCursor();
-    var lines = this.getLines();
-    var linesBeforeCursor = lines.slice(0, line);
-    var currentLineBeforeCursor = lines[line].slice(0, ch);
+    const {line, ch} = this.getCursor();
+    const lines = this.getLines();
+    const linesBeforeCursor = lines.slice(0, line);
+    const currentLineBeforeCursor = lines[line].slice(0, ch);
     return linesBeforeCursor.concat([currentLineBeforeCursor]).join(this.lineSeparator());
   }
 
@@ -67,10 +74,10 @@ class Codemirror extends Editor {
    * @returns {string}
    */
   getAfterCursor() {
-    var {line, ch} = this.getCursor();
-    var lines = this.getLines();
-    var linesAfterCursor = lines.slice(line + 1);
-    var currentLineAfterCursor = lines[line].slice(ch);
+    const {line, ch} = this.getCursor();
+    const lines = this.getLines();
+    const linesAfterCursor = lines.slice(line + 1);
+    const currentLineAfterCursor = lines[line].slice(ch);
     return [currentLineAfterCursor].concat(linesAfterCursor).join(this.lineSeparator());
   }
 
@@ -103,21 +110,17 @@ class Codemirror extends Editor {
    * @param {CodeMirror} cm
    * @param {KeyboardEvent} e
    */
-  onKeydown(cm, e) {
-    var code = this.getCode(e);
-    var event;
-    switch (code) {
-      case 'OTHER':
-        return;
-      case 'ENTER': {
-        event = this.emitEnterEvent();
-        break;
-      }
-      default: {
-        event = this.emitMoveEvent(code);
-      }
+  onKeydown(cm: CodeMirror, e: KeyboardEvent) {
+    const code = this.getCode(e);
+    let event;
+    if (code === 'UP' || code === 'DOWN') {
+      event = this.emitMoveEvent(code);
+    } else if (code === 'ENTER') {
+      event = this.emitEnterEvent();
+    } else if (code === 'ESC') {
+      event = this.emitEscEvent();
     }
-    if (event.defaultPrevented) {
+    if (event && event.defaultPrevented) {
       e.preventDefault();
     }
   }
@@ -127,20 +130,11 @@ class Codemirror extends Editor {
    * @param {CodeMirror} cm
    * @param {KeyboardEvent} e
    */
-  onKeyup(cm, e) {
-    if (!this.isMoveKeyEvent(e)) {
+  onKeyup(cm: CodeMirror, e: KeyboardEvent) {
+    const code = this.getCode(e);
+    if (code !== 'DOWN' && code !== 'UP' && code !== 'META') {
       this.emitChangeEvent();
     }
-  }
-
-  /**
-   * @private
-   * @param {KeyboardEvent} e
-   * @returns {boolean}
-   */
-  isMoveKeyEvent(e) {
-    var code = this.getCode(e);
-    return code === 'DOWN' || code === 'UP';
   }
 
   /**
@@ -159,5 +153,3 @@ class Codemirror extends Editor {
     this.cm.off('keyup', this.onKeyup);
   }
 }
-
-export default Codemirror;

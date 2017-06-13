@@ -1,3 +1,5 @@
+require('./test_helper');
+
 import CodeMirror from '../src/textcomplete.codemirror';
 
 import isNumber from 'lodash.isnumber';
@@ -55,7 +57,7 @@ describe('CodeMirror', function () {
           editor.on('move', spy);
           subject();
           assert(spy.calledOnce);
-          assert(spy.calledWith({ detail: { code: code } }));
+          assert(spy.args[0][0].detail.code === code);
         });
 
         it('should prevent the keydown event when move event is prevented', function () {
@@ -136,7 +138,7 @@ describe('CodeMirror', function () {
         editor.on('change', spy);
         subject();
         assert(spy.calledOnce);
-        assert(spy.calledWith({ detail: { beforeCursor: 'hel' } }));
+        assert(spy.args[0][0].detail.beforeCursor === 'hel');
       });
     });
   });

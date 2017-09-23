@@ -6,16 +6,9 @@ import SearchResult from "textcomplete/lib/search_result"
 
 type CodeMirror = any
 
-/**
- * @extends Editor
- * @prop {CodeMirror} cm
- */
 export default class extends Editor {
   cm: CodeMirror
 
-  /**
-   * @param {CodeMirror} cm
-   */
   constructor(cm: CodeMirror) {
     super()
     this.cm = cm
@@ -25,7 +18,6 @@ export default class extends Editor {
     this.startListening()
   }
 
-  /** @override */
   destroy() {
     super.destroy()
     this.stopListening()
@@ -33,10 +25,6 @@ export default class extends Editor {
     return this
   }
 
-  /**
-   * @override
-   * @param {SearchResult} searchResult
-   */
   applySearchResult(searchResult: SearchResult) {
     const replace = searchResult.replace(
       this.getBeforeCursor(),
@@ -50,10 +38,6 @@ export default class extends Editor {
     this.cm.focus()
   }
 
-  /**
-   * @override
-   * @returns {{top: number, lineHeight: number, left: number}}
-   */
   getCursorOffset() {
     const el = this.cm.display.cursorDiv.firstChild
     const offset = calculateElementOffset(el)
@@ -64,10 +48,6 @@ export default class extends Editor {
     }
   }
 
-  /**
-   * @override
-   * @returns {string}
-   */
   getBeforeCursor() {
     const { line, ch } = this.getCursor()
     const lines = this.getLines()
@@ -78,10 +58,6 @@ export default class extends Editor {
       .join(this.lineSeparator())
   }
 
-  /**
-   * @override
-   * @returns {string}
-   */
   getAfterCursor() {
     const { line, ch } = this.getCursor()
     const lines = this.getLines()
@@ -92,35 +68,22 @@ export default class extends Editor {
       .join(this.lineSeparator())
   }
 
-  /**
-   * @private
-   * @returns {string[]}
-   */
-  getLines() {
+  /** @private */
+  getLines(): string[] {
     return this.cm.doc.getValue().split(this.lineSeparator())
   }
 
-  /**
-   * @private
-   * @returns {{line: number, ch: number}}
-   */
-  getCursor() {
+  /** @private */
+  getCursor(): { line: number, ch: number } {
     return this.cm.doc.getCursor()
   }
 
-  /**
-   * @private
-   * @returns {string}
-   */
-  lineSeparator() {
+  /** @private */
+  lineSeparator(): string {
     return this.cm.doc.lineSeparator()
   }
 
-  /**
-   * @private
-   * @param {CodeMirror} cm
-   * @param {KeyboardEvent} e
-   */
+  /** @private */
   onKeydown(cm: CodeMirror, e: KeyboardEvent) {
     const code = this.getCode(e)
     let event
@@ -136,11 +99,7 @@ export default class extends Editor {
     }
   }
 
-  /**
-   * @private
-   * @param {CodeMirror} cm
-   * @param {KeyboardEvent} e
-   */
+  /** @private */
   onKeyup(cm: CodeMirror, e: KeyboardEvent) {
     const code = this.getCode(e)
     if (code !== "DOWN" && code !== "UP" && code !== "META") {
@@ -148,17 +107,13 @@ export default class extends Editor {
     }
   }
 
-  /**
-   * @private
-   */
+  /** @private */
   startListening() {
     this.cm.on("keydown", this.onKeydown)
     this.cm.on("keyup", this.onKeyup)
   }
 
-  /**
-   * @private
-   */
+  /** @private */
   stopListening() {
     this.cm.off("keydown", this.onKeydown)
     this.cm.off("keyup", this.onKeyup)

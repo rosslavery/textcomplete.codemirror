@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/yuku-t/textcomplete.codemirror#readme",
   "dependencies": {
-    "textcomplete": "^0.12.1"
+    "textcomplete": "^0.13.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -64,7 +64,7 @@
     "webpack-merge": "^4.1.0"
   },
   "peerDependencies": {
-    "textcomplete": "^0.12.1"
+    "textcomplete": "^0.13.1"
   },
   "babel": {
     "presets": [

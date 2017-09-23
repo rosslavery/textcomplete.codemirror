@@ -49,12 +49,16 @@ export default class extends Editor {
 
   /**
    * @override
-   * @returns {{top: number, left: number}}
+   * @returns {{top: number, lineHeight: number, left: number}}
    */
   getCursorOffset() {
     const el = this.cm.display.cursorDiv.firstChild;
     const offset = calculateElementOffset(el);
-    return { top: offset.top + parseInt(el.style.height, 10), left: offset.left };
+    return {
+      top: offset.top,
+      lineHeight: parseInt(el.style.height, 10),
+      left: offset.left
+    };
   }
 
   /**

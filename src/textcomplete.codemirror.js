@@ -12,7 +12,6 @@ export default class extends Editor {
   constructor(cm: CodeMirror) {
     super()
     this.cm = cm
-
     ;(this: any).onKeydown = this.onKeydown.bind(this)
     ;(this: any).onKeyup = this.onKeyup.bind(this)
     this.startListening()
@@ -41,10 +40,11 @@ export default class extends Editor {
   getCursorOffset() {
     const el = this.cm.display.cursorDiv.firstChild
     const offset = calculateElementOffset(el)
+    const lineHeight = parseInt(el.style.height, 10)
     return {
-      top: offset.top,
-      lineHeight: parseInt(el.style.height, 10),
       left: offset.left,
+      lineHeight,
+      top: offset.top + lineHeight,
     }
   }
 

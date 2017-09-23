@@ -11041,10 +11041,11 @@ var _class = function (_Editor) {
     value: function getCursorOffset() {
       var el = this.cm.display.cursorDiv.firstChild;
       var offset = (0, _utils.calculateElementOffset)(el);
+      var lineHeight = parseInt(el.style.height, 10);
       return {
-        top: offset.top,
-        lineHeight: parseInt(el.style.height, 10),
-        left: offset.left
+        left: offset.left,
+        lineHeight: lineHeight,
+        top: offset.top + lineHeight
       };
     }
   }, {

@@ -1,10 +1,8 @@
-@import "../../node_modules/getbase/dist/style.css";
+@import "../../node_modules/getbase/scss/styles";
 @import "../../node_modules/highlight.js/styles/solarized-dark.css";
 @import "../../node_modules/codemirror/lib/codemirror.css";
 
-:root {
-  --height: 18px;
-}
+$height: 18px;
 
 .dropdown-menu {
   background-color: white;
@@ -12,46 +10,50 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  & li {
+
+  li {
     border-top: 1px solid #ddd;
     padding: 2px 5px;
     margin: 0;
     clear: both;
+
+    &::first-child {
+      border-top: none;
+    }
+
+    &::hover {
+      background-color: rgb(110, 183, 219);
+    }
+
+    &.active {
+      background-color: rgb(110, 183, 219);
+    }
   }
 
-  & li:first-child {
-    border-top: none;
-  }
-
-  & li:hover,
-  & .active {
-    background-color: rgb(110, 183, 219);
-  }
-
-  & a {
-    height: var(--height);
+  a {
+    height: $height;
     text-decoration: none;
     color: #555;
+
+    &::hover {
+      cursor: pointer;
+    }
   }
 
-  & a:hover {
-    cursor: pointer;
-  }
-
-  & img {
+  img {
     vertical-align: text-top;
-    height: var(--height);
+    height: $height;
   }
 
-  & .lang-name {
+  .lang-name {
     float: right;
   }
 
-  & .lang-ext {
+  .lang-ext {
     float: left;
   }
 
-  & code {
+  code {
     background-color: transparent;
   }
 }

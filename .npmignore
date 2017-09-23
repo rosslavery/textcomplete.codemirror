@@ -7,7 +7,7 @@
 .publish
 .travis.yml
 coverage
-doc
+docs
 lib/main.js
 npm-debug.log
 powered-test

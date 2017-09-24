@@ -16,4 +16,6 @@ ratings:
 exclude_paths:
 - karma.conf.js
 - webpack.config.js
-- src/doc/langs.js
+- webpack.docs.config.js
+- src/docs/langs.js
+- docs/**/*.js
